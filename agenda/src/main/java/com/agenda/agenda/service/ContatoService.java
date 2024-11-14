@@ -54,6 +54,18 @@ public class ContatoService {
         return ResponseEntity.ok().body(ContatoMapper.toDto(contatoCriado));
     }
 
+    public ResponseEntity<Void> delete(Long id){
+        Contato contato = this.getContatoById(id);
+
+        if(contato == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        this.contatoRepository.delete(contato);
+
+        return ResponseEntity.noContent().build();
+    }
+
     private Categoria getCategoriaById(Long id){
         Optional<Categoria> op = this.categoriaRepository.findById(id);
 
