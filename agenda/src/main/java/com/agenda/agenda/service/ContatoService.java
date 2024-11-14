@@ -1,12 +1,10 @@
 package com.agenda.agenda.service;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import com.agenda.agenda.dto.ContatoDTO;
 import com.agenda.agenda.dto.request.ContatoRequest;
@@ -64,6 +62,20 @@ public class ContatoService {
         this.contatoRepository.delete(contato);
 
         return ResponseEntity.noContent().build();
+    }
+
+    public ResponseEntity<ContatoDTO> update(Long id, ContatoRequest novosDados){
+        Contato toUpdate = this.getContatoById(id);
+        
+        if(toUpdate == null){
+            return ResponseEntity.notFound().build();
+        }
+        
+        Categoria categoria = novosDados.getCategoriaId() != null? this.getCategoriaById(novosDados.getCategoriaId()) : toUpdate.getCategoria();
+
+        Contato updated = ContatoMapper.toModelOnUpdate(toUpdate, novosDados, categoria);
+
+        return ResponseEntity.ok().body(ContatoMapper.toDto(this.contatoRepository.save(updated)));
     }
 
     private Categoria getCategoriaById(Long id){
