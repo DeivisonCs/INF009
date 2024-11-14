@@ -2,6 +2,9 @@ package com.agenda.agenda.dto;
 
 import com.agenda.agenda.model.Contato;
 
+import lombok.Getter;
+
+@Getter
 public class ContatoDTO {
     private Long id;
     private String nome;

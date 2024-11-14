@@ -40,22 +40,18 @@ public class ContatoService {
         return ResponseEntity.ok().body(ContatoMapper.toDto(contato));
     }
 
-    public ResponseEntity<ContatoDTO> create(ContatoRequest contato, UriComponentsBuilder uribuilder){
+    public ResponseEntity<ContatoDTO> create(ContatoRequest contato){        
         Categoria categoria = this.getCategoriaById(contato.getCategoriaId());
         
         if(categoria == null){
             return ResponseEntity.notFound().build();
         }
-
+        
         Contato novoContato = new Contato(contato, categoria);
-
+        
         Contato contatoCriado = this.contatoRepository.save(novoContato);
 
-        URI uri = uribuilder
-            .path("/api/contato/{id}")
-            .buildAndExpand(contatoCriado.getId())
-            .toUri();
-        return ResponseEntity.created(uri).body(ContatoMapper.toDto(contatoCriado));
+        return ResponseEntity.ok().body(ContatoMapper.toDto(contatoCriado));
     }
 
     private Categoria getCategoriaById(Long id){

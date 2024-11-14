@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import com.agenda.agenda.dto.ContatoDTO;
 import com.agenda.agenda.dto.request.ContatoRequest;
@@ -35,7 +34,7 @@ public class ContatoController {
     }
 
     @PostMapping
-    public ResponseEntity<ContatoDTO> create(@RequestBody @Valid ContatoRequest novoContato, UriComponentsBuilder uribuilder){
-        return this.contatoService.create(novoContato, uribuilder);
+    public ResponseEntity<ContatoDTO> create(@Valid @RequestBody ContatoRequest novoContato){
+        return this.contatoService.create(novoContato);
     }
 }
