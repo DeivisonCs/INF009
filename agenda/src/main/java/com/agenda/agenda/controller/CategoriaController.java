@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,11 @@ public class CategoriaController {
     @GetMapping
     public ResponseEntity<List<CategoriaDTO>> getAll(){
         return ResponseEntity.ok().body(this.categoriaService.getAll());
+    }
+    
+    @GetMapping("{id}")
+    public ResponseEntity<CategoriaDTO> getById(@PathVariable Long id){
+        return this.categoriaService.getCategoriaById(id);
     }
 
     @PostMapping
