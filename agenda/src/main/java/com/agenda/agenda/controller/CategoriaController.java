@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.agenda.agenda.dto.CategoriaDTO;
+import com.agenda.agenda.dto.CategoriaDetalhadaDTO;
 import com.agenda.agenda.dto.request.CategoriaRequest;
 import com.agenda.agenda.service.CategoriaService;
 
@@ -48,5 +49,10 @@ public class CategoriaController {
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         return this.categoriaService.delete(id);
+    }
+    
+    @GetMapping("/{id}/details")
+    public ResponseEntity<CategoriaDetalhadaDTO> getDetais(@PathVariable Long id){
+        return this.categoriaService.getDetails(id);
     }
 }

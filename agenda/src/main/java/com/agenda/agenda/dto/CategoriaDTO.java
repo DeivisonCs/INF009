@@ -1,5 +1,7 @@
 package com.agenda.agenda.dto;
 
+import java.util.List;
+
 import com.agenda.agenda.model.Categoria;
 
 import lombok.Getter;

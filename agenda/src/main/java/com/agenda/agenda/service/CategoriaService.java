@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.agenda.agenda.dto.CategoriaDTO;
+import com.agenda.agenda.dto.CategoriaDetalhadaDTO;
 import com.agenda.agenda.dto.request.CategoriaRequest;
 import com.agenda.agenda.mapper.CategoriaMapper;
 import com.agenda.agenda.model.Categoria;
@@ -63,6 +64,16 @@ public class CategoriaService {
         Categoria updated = CategoriaMapper.toModelOnUpdate(categoria, novaCategoria);
 
         return ResponseEntity.ok().body(CategoriaMapper.toDto(this.categoriaRepository.save(updated)));
+    }
+
+    public ResponseEntity<CategoriaDetalhadaDTO> getDetails(Long id){
+        Categoria categoria = this.getById(id);
+
+        if(categoria == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok().body(CategoriaMapper.toDetailsDto(categoria));
     }
 
     public Categoria getById(Long id){
