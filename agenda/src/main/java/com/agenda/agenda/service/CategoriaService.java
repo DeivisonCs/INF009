@@ -52,6 +52,18 @@ public class CategoriaService {
 
         return CategoriaMapper.toDto(this.categoriaRepository.save(categoria));
     }
+    
+    public ResponseEntity<CategoriaDTO> update(Long id, CategoriaRequest novaCategoria){
+        Categoria categoria = this.getById(id);
+
+        if(categoria == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        Categoria updated = CategoriaMapper.toModelOnUpdate(categoria, novaCategoria);
+
+        return ResponseEntity.ok().body(CategoriaMapper.toDto(this.categoriaRepository.save(updated)));
+    }
 
     public Categoria getById(Long id){
         Optional<Categoria> op = this.categoriaRepository.findById(id);

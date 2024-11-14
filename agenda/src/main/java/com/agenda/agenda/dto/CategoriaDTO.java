@@ -7,10 +7,10 @@ import lombok.Getter;
 @Getter
 public class CategoriaDTO {
     private Long id;
-    private String name;
+    private String nome;
     
     public CategoriaDTO (Categoria categoria){
         this.id = categoria.getId();
-        this.name = categoria.getNome();
+        this.nome = categoria.getNome();
     }
 }

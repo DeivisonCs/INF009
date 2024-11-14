@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Categoria {
 
     @Id
@@ -35,7 +37,7 @@ public class Categoria {
     private List<Contato> contatos;
 
     public Categoria(CategoriaDTO categoria){
-        this.nome = categoria.getName();
+        this.nome = categoria.getNome();
     }
 
     public Categoria(CategoriaRequest categoria){
