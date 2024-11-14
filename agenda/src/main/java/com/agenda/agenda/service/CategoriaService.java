@@ -35,6 +35,18 @@ public class CategoriaService {
         return ResponseEntity.ok().body(CategoriaMapper.toDto(categoria));
     }
 
+    public ResponseEntity<Void> delete(Long id){
+        Categoria categoria = this.getById(id);
+
+        if(categoria == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        this.categoriaRepository.delete(categoria);
+
+        return ResponseEntity.noContent().build();
+    }
+
     public CategoriaDTO create(CategoriaRequest novaCategoria){
         Categoria categoria = new Categoria(novaCategoria);
 

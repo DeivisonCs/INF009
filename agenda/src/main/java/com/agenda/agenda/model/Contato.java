@@ -31,7 +31,7 @@ public class Contato {
 
     private String email;
 
-    @ManyToOne(cascade=CascadeType.REMOVE)
+    @ManyToOne()
     private Categoria categoria;
 
     public Contato(ContatoRequest contato, Categoria categoria){

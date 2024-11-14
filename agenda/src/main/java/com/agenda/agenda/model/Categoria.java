@@ -5,6 +5,7 @@ import java.util.List;
 import com.agenda.agenda.dto.CategoriaDTO;
 import com.agenda.agenda.dto.request.CategoriaRequest;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class Categoria {
     @Column(unique=true)
     private String nome;
 
-    @OneToMany
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
     private List<Contato> contatos;
 
     public Categoria(CategoriaDTO categoria){
