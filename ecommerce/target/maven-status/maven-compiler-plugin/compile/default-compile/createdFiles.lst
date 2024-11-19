@@ -1,0 +1,10 @@
+com\ecommerce\ecommerce\controller\CategoriaController.class
+com\ecommerce\ecommerce\service\CategoriaService.class
+com\ecommerce\ecommerce\model\Produto.class
+com\ecommerce\ecommerce\dto\CategoriaDTO.class
+com\ecommerce\ecommerce\config\SwaggerConfig.class
+com\ecommerce\ecommerce\mapper\CategoriaMapper.class
+com\ecommerce\ecommerce\dto\request\CategoriaRequest.class
+com\ecommerce\ecommerce\EcommerceApplication.class
+com\ecommerce\ecommerce\model\Categoria.class
+com\ecommerce\ecommerce\repository\CategoriaRepository.class
