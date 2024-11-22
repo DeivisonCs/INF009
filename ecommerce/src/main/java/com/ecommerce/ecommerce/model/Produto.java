@@ -1,38 +1,40 @@
 package com.ecommerce.ecommerce.model;
 
+import com.ecommerce.ecommerce.dto.request.ProdutoRequest;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class Produto {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-
-    @NotNull
-    @NotBlank
+    private String nome;
     private String descricao; 
-
-    @NotNull
-    @NotBlank
     private Double preco;
+    private int quantidadeEstoque;
 
-    @NotNull
-    private int quantidade;
-
-    @NotNull
     @ManyToOne
     private Categoria categoria;
+
+    public Produto(ProdutoRequest produto, Categoria categoria){
+        this.nome = produto.getNome();
+        this.quantidadeEstoque = produto.getQuantidadeEstoque();
+        this.descricao = produto.getDescricao();
+        this.preco = produto.getPreco();
+        this.categoria = categoria;
+    }
 }
 // nome, descrição, preço, quantidade em estoque e
 // categoria.
