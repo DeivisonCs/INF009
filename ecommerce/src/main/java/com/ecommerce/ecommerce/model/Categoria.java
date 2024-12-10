@@ -25,7 +25,6 @@ public class Categoria {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @Valid
     @Column(unique=true)
     private String nome;
 
