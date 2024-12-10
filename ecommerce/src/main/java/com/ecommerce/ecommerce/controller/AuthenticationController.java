@@ -43,7 +43,8 @@ public class AuthenticationController {
     @PostMapping("/cadastrar")
     @Operation(summary = "Cadastrar usuário", description = "Cadastra um novo usuário")
     @ApiResponse(responseCode = "200", description = "Usuário cadastrado")
-    public ResponseEntity<UserDTO> register(@RequestBody @Valid UserRequest user){
-        return ResponseEntity.ok().body(this.authenticationService.register(user));
+    public ResponseEntity<Void> register(@RequestBody @Valid UserRequest user){
+        this.authenticationService.register(user);
+        return ResponseEntity.ok().build();
     }
 }
