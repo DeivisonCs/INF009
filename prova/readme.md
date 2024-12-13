@@ -1,4 +1,8 @@
-# Inserções para teste
+# Como Executar
+
+* Faça um clone do projeto
+* Edite as informações do arquivo config.properties (caso necessário)
+## Inserções para teste
 
 ```
 INSERT INTO role (id, role) VALUES (1, 'ADMIN_USER'), (2, 'COMMON_USER');
