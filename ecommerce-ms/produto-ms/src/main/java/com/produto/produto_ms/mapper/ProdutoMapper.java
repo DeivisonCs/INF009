@@ -16,7 +16,11 @@ public class ProdutoMapper {
         return new ProdutoResponse(product);
     }
     
-    public static List<ProdutoResponse> modelToResponseList(List<Produto> product){
-        return product.stream().map(ProdutoResponse::new).toList();
+    public static List<ProdutoResponse> modelToResponseList(List<Produto> products){
+        return products.stream().map(ProdutoResponse::new).toList();
+    }
+
+    public static List<Produto> requestToModelList(List<ProdutoRequest> products){
+        return products.stream().map(Produto::new).toList();
     }
 }

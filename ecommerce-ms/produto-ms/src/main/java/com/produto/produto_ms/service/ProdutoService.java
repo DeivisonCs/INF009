@@ -29,6 +29,12 @@ public class ProdutoService {
         return ProdutoMapper.modelToResponse(newProd);
     }
 
+    public void registerMany(List<ProdutoRequest> products){
+        List<Produto> newProducts = ProdutoMapper.requestToModelList(products);
+
+        this.produtoRepository.saveAll(newProducts);
+    }
+
     public ProdutoResponse getProductById(Long id){
         Produto product = this.getById(id);
 

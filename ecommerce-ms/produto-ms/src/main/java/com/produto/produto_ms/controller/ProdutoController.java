@@ -37,6 +37,15 @@ public class ProdutoController {
         return ResponseEntity.created(uri).body(newProduct);
     }
 
+    @PostMapping("/register/many")
+    public ResponseEntity<Void> registerMany(@RequestBody @Valid List<ProdutoRequest> products, UriComponentsBuilder uriComponentBuilder){
+        this.produtoService.registerMany(products);
+
+        URI uri = uriComponentBuilder.build().toUri();
+
+        return ResponseEntity.created(uri).build();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoResponse> getProductById(@PathVariable Long id){
         return ResponseEntity.ok().body(this.produtoService.getProductById(id));
