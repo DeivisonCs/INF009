@@ -1,21 +1,23 @@
 package com.produto.produto_ms.dto.request;
 
+import com.produto.produto_ms.dto.ValidationGroup;
+
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class ProdutoRequest {
 
-    @NotBlank(message = "Informe o nome")
-    @NotNull(message = "Nome não pode nulo")
+    @NotBlank(message = "Informe o nome", groups = {ValidationGroup.Create.class, ValidationGroup.Update.class})
+    @NotNull(message = "Nome não pode nulo", groups = ValidationGroup.Create.class)
     private String name;
 
-    @NotBlank(message = "Informe o fabricante")
-    @NotNull(message = "Fabricante não pode nulo")
+    @NotBlank(message = "Informe o fabricante", groups = {ValidationGroup.Create.class, ValidationGroup.Update.class})
+    @NotNull(message = "Fabricante não pode nulo", groups = ValidationGroup.Create.class)
     private String manufacturer;
 
-    @NotNull(message = "Quantidade em estoque não pode nula")
-    @Min(0)
+    @NotNull(message = "Quantidade em estoque não pode nula", groups = ValidationGroup.Create.class)
+    @Min(value = 0, message = "A quantidade em estoque não pode ser negativa", groups = {ValidationGroup.Create.class, ValidationGroup.Update.class})
     private Integer stock;
 
     public String getName() {

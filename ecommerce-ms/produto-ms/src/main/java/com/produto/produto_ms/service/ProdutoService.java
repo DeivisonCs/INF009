@@ -72,6 +72,20 @@ public class ProdutoService {
         this.produtoRepository.saveAll(products);
     }
 
+    public ProdutoResponse updateProduct(Long id, ProdutoRequest newData){
+        Produto productToUpdate = this.getById(id);
+
+        if(productToUpdate == null) {
+            throw new NotFoundException("Produto não encontrado");
+        }
+
+        Produto updatedProdut = ProdutoMapper.requestToModel(newData);
+        updatedProdut.setId(productToUpdate.getId());
+        
+        this.produtoRepository.save(updatedProdut);
+        return ProdutoMapper.modelToResponse(updatedProdut);
+    }
+
     private Produto getById(Long id){
         Optional<Produto> op = this.produtoRepository.findById(id);
         

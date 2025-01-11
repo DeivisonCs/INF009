@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.produto.produto_ms.dto.PedidoDTO;
+import com.produto.produto_ms.dto.ValidationGroup;
 import com.produto.produto_ms.dto.request.ProdutoRequest;
 import com.produto.produto_ms.dto.response.ProdutoResponse;
 import com.produto.produto_ms.service.ProdutoService;
@@ -31,7 +33,7 @@ public class ProdutoController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<ProdutoResponse> register (@RequestBody @Valid ProdutoRequest product, UriComponentsBuilder uriComponentBuilder) {
+    public ResponseEntity<ProdutoResponse> register (@RequestBody @Validated(ValidationGroup.Create.class) ProdutoRequest product, UriComponentsBuilder uriComponentBuilder) {
         ProdutoResponse newProduct = this.produtoService.register(product);
 
         URI uri = uriComponentBuilder.path("/product/{id}").buildAndExpand(newProduct.getId()).toUri();
@@ -63,5 +65,10 @@ public class ProdutoController {
         this.produtoService.updateStock(toUpdate);
 
         return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/update/product/{id}")
+    public ResponseEntity<ProdutoResponse> updateStock(@PathVariable Long id, @RequestBody @Validated(ValidationGroup.Update.class) ProdutoRequest toUpdate){
+        return ResponseEntity.ok().body(this.produtoService.updateProduct(id, toUpdate));
     }
 }
