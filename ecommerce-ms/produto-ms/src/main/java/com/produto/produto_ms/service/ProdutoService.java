@@ -1,10 +1,14 @@
 package com.produto.produto_ms.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.produto.produto_ms.dto.PedidoDTO;
 import com.produto.produto_ms.dto.request.ProdutoRequest;
 import com.produto.produto_ms.dto.response.ProdutoResponse;
 import com.produto.produto_ms.exceptions.NotFoundException;
@@ -49,6 +53,23 @@ public class ProdutoService {
         List<Produto> allProducts = this.produtoRepository.findAll();
 
         return ProdutoMapper.modelToResponseList(allProducts);
+    }
+
+    public void updateStock(List<PedidoDTO> productsToUpdate){
+        Map<Long, Integer> stockToUpdate = productsToUpdate.stream().collect(Collectors.toMap(PedidoDTO::productId, PedidoDTO::amount));
+        List<Long> productIds = new ArrayList<>(stockToUpdate.keySet());
+
+        List<Produto> products = this.produtoRepository.findAllById(productIds);
+
+        for (Produto product : products) {
+            Integer newValue = stockToUpdate.get(product.getId());
+
+            if (newValue != null) {
+                product.setStock(newValue);
+            }
+        }
+        
+        this.produtoRepository.saveAll(products);
     }
 
     private Produto getById(Long id){
