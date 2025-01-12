@@ -1,0 +1,71 @@
+package com.pedido.pedido_ms.service;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.pedido.pedido_ms.dto.PedidoProdutoDTO;
+import com.pedido.pedido_ms.dto.request.PedidoProdutoRequest;
+import com.pedido.pedido_ms.dto.request.PedidoRequest;
+import com.pedido.pedido_ms.dto.request.ProdutoRequest;
+import com.pedido.pedido_ms.dto.response.PedidoResponse;
+import com.pedido.pedido_ms.mapper.PedidoMapper;
+import com.pedido.pedido_ms.mapper.ProdutoMapper;
+import com.pedido.pedido_ms.model.Comprador;
+import com.pedido.pedido_ms.model.Pedido;
+import com.pedido.pedido_ms.model.PedidoProduto;
+import com.pedido.pedido_ms.model.Produto;
+import com.pedido.pedido_ms.repository.PedidoRepository;
+
+@Service
+public class PedidoService {
+
+    private final PedidoRepository pedidoRepository;
+    private final ProdutoService produtoService;
+    private final CompradorService compradorService;
+
+    public PedidoService (PedidoRepository pedidoRepository, ProdutoService produtoService, CompradorService compradorService){
+        this.pedidoRepository = pedidoRepository;
+        this.produtoService = produtoService;
+        this.compradorService = compradorService;
+    }
+
+    public PedidoResponse registerOrder(PedidoRequest order){
+        Comprador buyer = this.compradorService.getBuyerByCPF(order.getBuyer());
+        // Set<PedidoProdutoDTO> products = 
+
+        Pedido newOrder = new Pedido();
+        newOrder.setBuyer(buyer);
+        newOrder.setPrice(order.getPrice());
+
+        Set<PedidoProduto> productOrder = this.getPedidoProduto(order.getProducts(), newOrder);
+
+        newOrder.setProducts(productOrder);
+
+        this.pedidoRepository.save(newOrder);
+
+        return PedidoMapper.modelToResponse(newOrder);
+    }
+
+    private Set<PedidoProduto> getPedidoProduto(Set<PedidoProdutoRequest> orderProduct, Pedido order){
+        // List<ProdutoRequest> productRequests = orderProduct.stream().map(PedidoProdutoRequest::getProduct).toList();
+        // List<Produto> products = this.produtoService.getProducts(productRequests);
+
+        // Set<PedidoProduto> orderList = 
+        
+        return  orderProduct.stream().map(productResquest -> {
+            Produto product = this.produtoService.getProduct(productResquest.getProduct());
+
+            PedidoProduto productOrder = new PedidoProduto();
+            productOrder.setProduct(product);
+            productOrder.setAmount(productResquest.getAmount());
+            productOrder.setUnitPrice(productResquest.getUnitPrice());
+            productOrder.setOrder(order);
+
+            return productOrder;
+        }).collect(Collectors.toSet());
+    }
+
+}
