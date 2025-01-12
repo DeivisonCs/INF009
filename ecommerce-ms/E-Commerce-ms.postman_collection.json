@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "7ce9edbe-46f5-46b6-8bbf-c564cb81f76a",
+		"name": "E-Commerce-ms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34893305"
+	},
+	"item": [
+		{
+			"name": "User-ms",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"teste dos santos\",\r\n    \"email\": \"teste@gmail.com\",\r\n    \"password\": \"teste123\",\r\n    \"contactNumber\": \"(71) 99191-9191\",\r\n    \"cpf\": \"111.222.333-12\",\r\n    \"address\": {\r\n        \"cep\": \"12202-123\",\r\n        \"street\": \"Salvador\",\r\n        \"number\": \"2131\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/usuario-ms/user/signup",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"usuario-ms",
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway-url}}/usuario-ms/user/1",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"usuario-ms",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By CPF",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cpf",
+								"value": "111.222.333-12",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/usuario-ms/user/cpf",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"usuario-ms",
+								"user",
+								"cpf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produto",
+			"item": [
+				{
+					"name": "Add Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"café\",\r\n    \"serialNumber\": \"SN-0091\",\r\n    \"manufacturer\": \"3 Corações\",\r\n    \"stock\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/produto-ms/product/register",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"produto-ms",
+								"product",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Many Products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"name\": \"chá\",\r\n        \"manufacturer\": \"Tee Müller\",\r\n        \"stock\": 25,\r\n        \"serialNumber\": \"SN-0001\"\r\n    },\r\n    {\r\n        \"name\": \"açúcar\",\r\n        \"manufacturer\": \"União\",\r\n        \"stock\": 50,\r\n        \"serialNumber\": \"SN-0002\"\r\n    },\r\n    {\r\n        \"name\": \"leite\",\r\n        \"manufacturer\": \"Italac\",\r\n        \"stock\": 30,\r\n        \"serialNumber\": \"SN-0003\"\r\n    },\r\n    {\r\n        \"name\": \"achocolatado\",\r\n        \"manufacturer\": \"Nescau\",\r\n        \"stock\": 15,\r\n        \"serialNumber\": \"SN-0004\"\r\n    },\r\n    {\r\n        \"name\": \"refrigerante\",\r\n        \"manufacturer\": \"Coca-Cola\",\r\n        \"stock\": 100,\r\n        \"serialNumber\": \"SN-0005\"\r\n    },\r\n    {\r\n        \"name\": \"suco de laranja\",\r\n        \"manufacturer\": \"Del Valle\",\r\n        \"stock\": 50,\r\n        \"serialNumber\": \"SN-0006\"\r\n    },\r\n    {\r\n        \"name\": \"água mineral\",\r\n        \"manufacturer\": \"Nestlé\",\r\n        \"stock\": 200,\r\n        \"serialNumber\": \"SN-0007\"\r\n    },\r\n    {\r\n        \"name\": \"pão de forma\",\r\n        \"manufacturer\": \"Pullman\",\r\n        \"stock\": 60,\r\n        \"serialNumber\": \"SN-0008\"\r\n    },\r\n    {\r\n        \"name\": \"macarrão\",\r\n        \"manufacturer\": \"Barilla\",\r\n        \"stock\": 150,\r\n        \"serialNumber\": \"SN-0009\"\r\n    },\r\n    {\r\n        \"name\": \"farinha de trigo\",\r\n        \"manufacturer\": \"Amaral\",\r\n        \"stock\": 40,\r\n        \"serialNumber\": \"SN-0010\"\r\n    },\r\n    {\r\n        \"name\": \"sal\",\r\n        \"manufacturer\": \"Cisne\",\r\n        \"stock\": 80,\r\n        \"serialNumber\": \"SN-0011\"\r\n    },\r\n    {\r\n        \"name\": \"molho de tomate\",\r\n        \"manufacturer\": \"Pomarola\",\r\n        \"stock\": 30,\r\n        \"serialNumber\": \"SN-0012\"\r\n    }\r\n]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/produto-ms/product/register/many",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"produto-ms",
+								"product",
+								"register",
+								"many"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway-url}}/produto-ms/product/all",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"produto-ms",
+								"product",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway-url}}/produto-ms/product/1",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"produto-ms",
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By SerialNumber",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway-url}}/produto-ms/product/serial/SN-0091",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"produto-ms",
+								"product",
+								"serial",
+								"SN-0091"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Stock",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"productId\": 1,\r\n        \"amount\": 10\r\n    },\r\n    {\r\n        \"productId\": 2,\r\n        \"amount\": 10\r\n    },\r\n    {\r\n        \"productId\": 3,\r\n        \"amount\": 10\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/produto-ms/product/update/stock",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"produto-ms",
+								"product",
+								"update",
+								"stock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"chá de boldo\",\r\n    \"manufacturer\": \"Tee Müller\",\r\n    \"stock\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/produto-ms/product/update/product/1",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"produto-ms",
+								"product",
+								"update",
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedido",
+			"item": [
+				{
+					"name": "Make Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// {\r\n//     \"price\": 300.00,\r\n//     \"buyer\": {\r\n//         \"name\": \"Claire Riviria\",\r\n//         \"cpf\": \"123.123.121-12\",\r\n//         \"contactNumber\": \"(71)93312-2141\",\r\n//         \"email\": \"testeClaire@gmail.com\",\r\n//         \"address\": {\r\n//             \"cep\": \"12202-123\",\r\n//             \"street\": \"Salvador\",\r\n//             \"number\": \"2131\"\r\n//         }\r\n//     },\r\n//     \"products\": [\r\n//         {\r\n//             \"amount\": 3,\r\n//             \"unitPrice\": 50.0,\r\n//             \"product\": {\r\n//                 \"name\": \"Chá\",\r\n//                 \"serialNumber\": \"123\",\r\n//                 \"manufacturer\": \"Tee Müller\"\r\n//             } \r\n//         },\r\n//         {\r\n//             \"amount\": 3,\r\n//             \"unitPrice\": 50.0,\r\n//             \"product\":{\r\n//                 \"name\": \"açúcar\",\r\n//                 \"manufacturer\": \"União\",\r\n//                 \"serialNumber\": \"9312\"\r\n//             }\r\n//         }\r\n//     ]\r\n\r\n// }\r\n{\r\n    \"price\": 300.00,\r\n    \"buyerCpf\": \"111.222.333-12\",\r\n    \"products\": [\r\n        {\r\n            \"amount\": 3,\r\n            \"unitPrice\": 50.0,\r\n            \"serialNumber\": \"SN-0007\"\r\n        },\r\n        {\r\n            \"amount\": 3,\r\n            \"unitPrice\": 50.0,\r\n            \"serialNumber\": \"SN-0001\"\r\n        }\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/pedido-ms/order",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"pedido-ms",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
