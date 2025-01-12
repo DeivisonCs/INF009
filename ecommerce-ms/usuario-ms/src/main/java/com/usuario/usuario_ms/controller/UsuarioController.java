@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -39,5 +40,10 @@ public class UsuarioController {
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponse> getUser(@PathVariable Long id){
         return ResponseEntity.ok().body(this.usuarioService.getUserById(id));
+    }
+    
+    @GetMapping("/cpf")
+    public ResponseEntity<UsuarioResponse> getUserByCpf(@RequestHeader("cpf") String cpf){
+        return ResponseEntity.ok().body(this.usuarioService.getUserByCpf(cpf));
     }
 }

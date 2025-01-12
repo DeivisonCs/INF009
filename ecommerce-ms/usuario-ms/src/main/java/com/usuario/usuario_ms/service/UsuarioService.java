@@ -41,9 +41,29 @@ public class UsuarioService {
 
         return UsuarioMapper.modelToResponse(user);
     }
+    
+    public UsuarioResponse getUserByCpf(String cpf){
+        Usuario user = this.getByCpf(cpf);
+
+        if(user == null){
+            throw new NotFoundException("Usuário não encontrado");
+        }
+
+        return UsuarioMapper.modelToResponse(user);
+    }
 
     private Usuario getById (Long id){
         Optional<Usuario> op = this.usuarioRepository.findById(id);
+
+        if(op.isPresent()){
+            return op.get();
+        }
+
+        return null;
+    }
+    
+    private Usuario getByCpf (String cpf){
+        Optional<Usuario> op = this.usuarioRepository.findByCpf(cpf);
 
         if(op.isPresent()){
             return op.get();
