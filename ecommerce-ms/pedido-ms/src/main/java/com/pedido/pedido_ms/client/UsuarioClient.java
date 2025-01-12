@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public interface UsuarioClient {
 
     @GetMapping("/user/cpf")
-    public UsuarioResponse getUserByCpf(@RequestHeader("cpf") String cpf);
+    public UsuarioClientResponse getUserByCpf(@RequestHeader("cpf") String cpf);
 }

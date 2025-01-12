@@ -14,6 +14,6 @@ public class PedidoProdutoDTO {
         this.id = product.getId();
         this.amount = product.getAmount();
         this.unitPrice = product.getUnitPrice();
-        this.product = ProdutoMapper.modelToRequest(product.getProduct());
+        this.product = ProdutoMapper.modelToDto(product.getProduct());
     }
 }

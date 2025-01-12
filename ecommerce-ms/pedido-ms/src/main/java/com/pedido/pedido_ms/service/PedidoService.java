@@ -1,18 +1,14 @@
 package com.pedido.pedido_ms.service;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.pedido.pedido_ms.dto.PedidoProdutoDTO;
 import com.pedido.pedido_ms.dto.request.PedidoProdutoRequest;
 import com.pedido.pedido_ms.dto.request.PedidoRequest;
-import com.pedido.pedido_ms.dto.request.ProdutoRequest;
 import com.pedido.pedido_ms.dto.response.PedidoResponse;
 import com.pedido.pedido_ms.mapper.PedidoMapper;
-import com.pedido.pedido_ms.mapper.ProdutoMapper;
 import com.pedido.pedido_ms.model.Comprador;
 import com.pedido.pedido_ms.model.Pedido;
 import com.pedido.pedido_ms.model.PedidoProduto;
@@ -49,13 +45,9 @@ public class PedidoService {
     }
 
     private Set<PedidoProduto> getPedidoProduto(Set<PedidoProdutoRequest> orderProduct, Pedido order){
-        // List<ProdutoRequest> productRequests = orderProduct.stream().map(PedidoProdutoRequest::getProduct).toList();
-        // List<Produto> products = this.produtoService.getProducts(productRequests);
 
-        // Set<PedidoProduto> orderList = 
-        
         return  orderProduct.stream().map(productResquest -> {
-            Produto product = this.produtoService.getProduct(productResquest.getProduct());
+            Produto product = this.produtoService.getProduct(productResquest.getserialNumber());
 
             PedidoProduto productOrder = new PedidoProduto();
             productOrder.setProduct(product);

@@ -1,6 +1,6 @@
 package com.pedido.pedido_ms.model;
 
-import com.pedido.pedido_ms.dto.request.ProdutoRequest;
+import com.pedido.pedido_ms.client.ProdutoClientResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,10 +22,10 @@ public class Produto {
 
     public Produto(){}
 
-    public Produto(ProdutoRequest product){
-        this.name = product.getName();
-        this.manufacturer = product.getManufacturer();
-        this.serialNumber = product.getSerialNumber();
+    public Produto(ProdutoClientResponse product){
+        this.name = product.name();
+        this.manufacturer = product.manufacturer();
+        this.serialNumber = product.serialNumber();
     }
 
     public Long getId() {

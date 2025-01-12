@@ -1,6 +1,6 @@
 package com.pedido.pedido_ms.model;
 
-import com.pedido.pedido_ms.client.UsuarioResponse;
+import com.pedido.pedido_ms.client.UsuarioClientResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -28,7 +28,7 @@ public class Comprador {
 
     public Comprador(){}
 
-    public Comprador(UsuarioResponse user){
+    public Comprador(UsuarioClientResponse user){
         this.name = user.name();
         this.cpf = user.cpf();
         this.contactNumber = user.contactNumber();

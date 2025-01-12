@@ -2,9 +2,6 @@ package com.pedido.pedido_ms.dto;
 
 import com.pedido.pedido_ms.model.Comprador;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
 public class CompradorDTO {
 
     private Long id;

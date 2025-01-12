@@ -1,6 +1,5 @@
 package com.pedido.pedido_ms.mapper;
 
-import com.pedido.pedido_ms.dto.CompradorDTO;
 import com.pedido.pedido_ms.dto.response.PedidoResponse;
 import com.pedido.pedido_ms.model.Pedido;
 

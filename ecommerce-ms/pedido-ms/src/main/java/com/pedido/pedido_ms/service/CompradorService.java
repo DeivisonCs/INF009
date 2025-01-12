@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.pedido.pedido_ms.client.UsuarioClient;
-import com.pedido.pedido_ms.client.UsuarioResponse;
+import com.pedido.pedido_ms.client.UsuarioClientResponse;
 import com.pedido.pedido_ms.model.Comprador;
 import com.pedido.pedido_ms.repository.CompradorRepository;
 
@@ -21,7 +21,7 @@ public class CompradorService {
     }
 
     private Comprador registerBuyer(String cpf){
-        UsuarioResponse user = this.usuarioClient.getUserByCpf(cpf);
+        UsuarioClientResponse user = this.usuarioClient.getUserByCpf(cpf);
 
         if(user == null){
             // exceção
