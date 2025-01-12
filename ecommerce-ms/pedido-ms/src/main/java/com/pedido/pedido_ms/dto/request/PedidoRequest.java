@@ -7,15 +7,17 @@ import jakarta.validation.constraints.NotNull;
 
 public class PedidoRequest {
 
-    private CompradorRequest buyer;
+    @NotNull(message = "CPF do comprador não deve ser nulo")
+    private String buyerCpf;
+
     private Set<PedidoProdutoRequest> products;
 
-    @NotNull(message = "Preo total não deve ser nulo")
+    @NotNull(message = "Preço total não deve ser nulo")
     @Min(value = 0)
     private Double price;
 
-    public CompradorRequest getBuyer() {
-        return buyer;
+    public String getBuyerCpf(){
+        return buyerCpf;
     }
 
     public Set<PedidoProdutoRequest> getProducts() {

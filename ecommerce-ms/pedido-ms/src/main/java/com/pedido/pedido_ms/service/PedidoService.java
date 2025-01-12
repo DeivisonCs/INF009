@@ -33,8 +33,7 @@ public class PedidoService {
     }
 
     public PedidoResponse registerOrder(PedidoRequest order){
-        Comprador buyer = this.compradorService.getBuyerByCPF(order.getBuyer());
-        // Set<PedidoProdutoDTO> products = 
+        Comprador buyer = this.compradorService.getBuyerByCPF(order.getBuyerCpf());
 
         Pedido newOrder = new Pedido();
         newOrder.setBuyer(buyer);

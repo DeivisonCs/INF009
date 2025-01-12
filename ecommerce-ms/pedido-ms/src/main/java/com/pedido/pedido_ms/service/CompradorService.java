@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.pedido.pedido_ms.dto.request.CompradorRequest;
-import com.pedido.pedido_ms.mapper.CompradorMapper;
+import com.pedido.pedido_ms.client.UsuarioClient;
+import com.pedido.pedido_ms.client.UsuarioResponse;
 import com.pedido.pedido_ms.model.Comprador;
 import com.pedido.pedido_ms.repository.CompradorRepository;
 
@@ -13,23 +13,31 @@ import com.pedido.pedido_ms.repository.CompradorRepository;
 public class CompradorService {
 
     private final CompradorRepository compradorRepository;
+    private final UsuarioClient usuarioClient;
 
-    public CompradorService(CompradorRepository compradorRepository){
+    public CompradorService(CompradorRepository compradorRepository, UsuarioClient usuarioClient){
         this.compradorRepository = compradorRepository;
+        this.usuarioClient = usuarioClient;
     }
 
-    private Comprador registerBuyer(CompradorRequest buyerToRegister){
-        Comprador buyer = CompradorMapper.requestToModel(buyerToRegister);
+    private Comprador registerBuyer(String cpf){
+        UsuarioResponse user = this.usuarioClient.getUserByCpf(cpf);
 
+        if(user == null){
+            // exceção
+        }
+
+        Comprador buyer = new Comprador(user);
         this.compradorRepository.save(buyer);
+
         return buyer;
     }
 
-    public Comprador getBuyerByCPF(CompradorRequest buyerToGet){
-        Optional<Comprador> buyer = this.compradorRepository.findByCpf(buyerToGet.getCpf());
+    public Comprador getBuyerByCPF(String cpf){
+        Optional<Comprador> buyer = this.compradorRepository.findByCpf(cpf);
 
         if(!buyer.isPresent()){
-            return this.registerBuyer(buyerToGet);
+            return this.registerBuyer(cpf);
         }
 
         return buyer.get();

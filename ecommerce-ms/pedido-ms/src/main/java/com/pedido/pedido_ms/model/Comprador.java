@@ -1,6 +1,6 @@
 package com.pedido.pedido_ms.model;
 
-import com.pedido.pedido_ms.dto.request.CompradorRequest;
+import com.pedido.pedido_ms.client.UsuarioResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -28,12 +28,12 @@ public class Comprador {
 
     public Comprador(){}
 
-    public Comprador(CompradorRequest buyer){
-        this.name = buyer.getName();
-        this.cpf = buyer.getCpf();
-        this.contactNumber = buyer.getContactNumber();
-        this.email = buyer.getEmail();
-        this.address = new Endereco(buyer.getAddress());
+    public Comprador(UsuarioResponse user){
+        this.name = user.name();
+        this.cpf = user.cpf();
+        this.contactNumber = user.contactNumber();
+        this.email = user.email();
+        this.address = new Endereco(user.address());
     }
 
     public Long getId() {
