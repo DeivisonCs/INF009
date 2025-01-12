@@ -49,6 +49,16 @@ public class ProdutoService {
         return ProdutoMapper.modelToResponse(product);
     }
     
+    public ProdutoResponse getProductBySerialNumber(String serialNumber){
+        Produto product = this.getBySerialNumber(serialNumber);
+
+        if(product == null) {
+            throw new NotFoundException("Produto não encontrado");
+        }
+
+        return ProdutoMapper.modelToResponse(product);
+    }
+    
     public List<ProdutoResponse> getAllProducts(){
         List<Produto> allProducts = this.produtoRepository.findAll();
 
@@ -88,6 +98,16 @@ public class ProdutoService {
 
     private Produto getById(Long id){
         Optional<Produto> op = this.produtoRepository.findById(id);
+        
+        if(op.isPresent()){
+            return op.get();
+        }
+
+        return null;
+    }
+    
+    private Produto getBySerialNumber(String serialNumber){
+        Optional<Produto> op = this.produtoRepository.findBySerialNumber(serialNumber);
         
         if(op.isPresent()){
             return op.get();

@@ -9,11 +9,15 @@ import jakarta.validation.constraints.NotNull;
 public class ProdutoRequest {
 
     @NotBlank(message = "Informe o nome", groups = {ValidationGroup.Create.class, ValidationGroup.Update.class})
-    @NotNull(message = "Nome não pode nulo", groups = ValidationGroup.Create.class)
+    @NotNull(message = "Nome não pode ser nulo", groups = ValidationGroup.Create.class)
     private String name;
 
+    @NotBlank(message = "Informe o número de serie", groups = {ValidationGroup.Create.class, ValidationGroup.Update.class})
+    @NotNull(message = "Número de serie não pode ser nulo", groups = ValidationGroup.Create.class)
+    private String serialNumber;
+
     @NotBlank(message = "Informe o fabricante", groups = {ValidationGroup.Create.class, ValidationGroup.Update.class})
-    @NotNull(message = "Fabricante não pode nulo", groups = ValidationGroup.Create.class)
+    @NotNull(message = "Fabricante não pode ser nulo", groups = ValidationGroup.Create.class)
     private String manufacturer;
 
     @NotNull(message = "Quantidade em estoque não pode nula", groups = ValidationGroup.Create.class)
@@ -22,6 +26,10 @@ public class ProdutoRequest {
 
     public String getName() {
         return name;
+    }
+    
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
     public String getManufacturer() {

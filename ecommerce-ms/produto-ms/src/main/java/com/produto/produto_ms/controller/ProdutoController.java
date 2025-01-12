@@ -55,6 +55,11 @@ public class ProdutoController {
         return ResponseEntity.ok().body(this.produtoService.getProductById(id));
     }
     
+    @GetMapping("/serial/{serialNumber}")
+    public ResponseEntity<ProdutoResponse> getProductBySerialNumber(@PathVariable String serialNumber){
+        return ResponseEntity.ok().body(this.produtoService.getProductBySerialNumber(serialNumber));
+    }
+    
     @GetMapping("/all")
     public ResponseEntity<List<ProdutoResponse>> getAllProducts(){
         return ResponseEntity.ok().body(this.produtoService.getAllProducts());
