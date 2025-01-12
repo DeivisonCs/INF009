@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  usuario-ms:
+    image: postgres:16.3
+    environment:
+      POSTGRES_DB: usuario-ms
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+
+  produto-ms:
+    image: postgres:16.3
+    environment:
+      POSTGRES_DB: produto-ms
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+
+  pedido-ms:
+    image: postgres:16.3
+    environment:
+      POSTGRES_DB: pedido-ms
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5435:5432"
