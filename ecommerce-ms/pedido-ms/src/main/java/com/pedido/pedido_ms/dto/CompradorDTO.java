@@ -19,5 +19,30 @@ public class CompradorDTO {
         this.email = buyer.getEmail();
         this.address = new EnderecoDTO(buyer.getAddress());
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public EnderecoDTO getAddress() {
+        return address;
+    }
+    
     
 }

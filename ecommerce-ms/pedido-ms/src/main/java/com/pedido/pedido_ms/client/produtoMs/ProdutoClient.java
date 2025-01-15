@@ -10,6 +10,6 @@ public interface ProdutoClient {
     @GetMapping("/product/serial/{serialNumber}")
     public ProdutoClientResponse getProductBySerialNumber(@PathVariable String serialNumber);
 
-    @GetMapping("/checkStock/{serialNumber}")
+    @GetMapping("/product/checkStock/{serialNumber}")
     public StockResponse isInStock(@PathVariable String serialNumber);
 }

@@ -1,5 +1,6 @@
 package com.pedido.pedido_ms.service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -63,4 +64,8 @@ public class PedidoService {
         }).collect(Collectors.toSet());
     }
 
+    public List<PedidoResponse> getAllOrders(){
+        List<Pedido> orders = this.pedidoRepository.findAll();
+        return PedidoMapper.modelListToResponseList(orders);
+    }
 }

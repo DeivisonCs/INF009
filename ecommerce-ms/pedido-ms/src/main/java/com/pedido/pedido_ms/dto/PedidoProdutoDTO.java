@@ -5,15 +5,33 @@ import com.pedido.pedido_ms.model.PedidoProduto;
 
 public class PedidoProdutoDTO {
 
-    private Long id;
+    private Long orderId;
     private Integer amount;
     private Double unitPrice;
     private ProdutoDTO product;
     
     public PedidoProdutoDTO (PedidoProduto product){
-        this.id = product.getId();
+        this.orderId = product.getId();
         this.amount = product.getAmount();
         this.unitPrice = product.getUnitPrice();
         this.product = ProdutoMapper.modelToDto(product.getProduct());
     }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public ProdutoDTO getProduct() {
+        return product;
+    }
+
+    
 }

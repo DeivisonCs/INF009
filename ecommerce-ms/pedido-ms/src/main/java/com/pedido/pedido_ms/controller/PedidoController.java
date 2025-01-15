@@ -1,12 +1,16 @@
 package com.pedido.pedido_ms.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pedido.pedido_ms.dto.request.PedidoRequest;
+import com.pedido.pedido_ms.dto.response.PedidoResponse;
 import com.pedido.pedido_ms.service.PedidoService;
 
 import jakarta.validation.Valid;
@@ -26,5 +30,10 @@ public class PedidoController {
         this.pedidoService.registerOrder(order);
 
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<PedidoResponse>> getAllOrders(){
+        return ResponseEntity.ok().body(this.pedidoService.getAllOrders());
     }
 }
