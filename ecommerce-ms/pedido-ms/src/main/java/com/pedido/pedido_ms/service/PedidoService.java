@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.pedido.pedido_ms.dto.enums.OrderStatus;
 import com.pedido.pedido_ms.dto.request.PedidoProdutoRequest;
 import com.pedido.pedido_ms.dto.request.PedidoRequest;
 import com.pedido.pedido_ms.dto.response.PedidoResponse;
@@ -22,11 +23,13 @@ public class PedidoService {
     private final PedidoRepository pedidoRepository;
     private final ProdutoService produtoService;
     private final CompradorService compradorService;
+    private final StatusService statusService;
 
-    public PedidoService (PedidoRepository pedidoRepository, ProdutoService produtoService, CompradorService compradorService){
+    public PedidoService (PedidoRepository pedidoRepository, ProdutoService produtoService, CompradorService compradorService, StatusService statusService){
         this.pedidoRepository = pedidoRepository;
         this.produtoService = produtoService;
         this.compradorService = compradorService;
+        this.statusService = statusService;
     }
 
     public PedidoResponse registerOrder(PedidoRequest order){
@@ -35,6 +38,7 @@ public class PedidoService {
         Pedido newOrder = new Pedido();
         newOrder.setBuyer(buyer);
         newOrder.setPrice(order.getPrice());
+        newOrder.setStatus(this.statusService.getStatus(OrderStatus.WAITING_PAYMENT));
 
         Set<PedidoProduto> productOrder = this.getPedidoProduto(order.getProducts(), newOrder);
 

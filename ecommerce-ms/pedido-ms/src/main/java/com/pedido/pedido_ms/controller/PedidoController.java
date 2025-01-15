@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pedido.pedido_ms.dto.request.PedidoRequest;
 import com.pedido.pedido_ms.dto.response.PedidoResponse;
+import com.pedido.pedido_ms.dto.response.StatusResponse;
 import com.pedido.pedido_ms.service.PedidoService;
+import com.pedido.pedido_ms.service.StatusService;
 
 import jakarta.validation.Valid;
 
@@ -20,9 +22,11 @@ import jakarta.validation.Valid;
 public class PedidoController {
 
     private final PedidoService pedidoService;
+    private final StatusService statusService;
 
-    public PedidoController (PedidoService pedidoService){
+    public PedidoController (PedidoService pedidoService, StatusService statusService){
         this.pedidoService = pedidoService;
+        this.statusService = statusService;
     }
 
     @PostMapping()
@@ -36,4 +40,10 @@ public class PedidoController {
     public ResponseEntity<List<PedidoResponse>> getAllOrders(){
         return ResponseEntity.ok().body(this.pedidoService.getAllOrders());
     }
+   
+    @GetMapping("/status")
+    public ResponseEntity<List<StatusResponse>> getAllStatus(){
+        return ResponseEntity.ok().body(this.statusService.getStatus());
+    }
+
 }

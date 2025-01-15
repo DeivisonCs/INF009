@@ -5,13 +5,15 @@ package com.pedido.pedido_ms.dto.response;
 
     import com.pedido.pedido_ms.dto.CompradorDTO;
     import com.pedido.pedido_ms.dto.PedidoProdutoDTO;
-    import com.pedido.pedido_ms.mapper.CompradorMapper;
+import com.pedido.pedido_ms.dto.enums.OrderStatus;
+import com.pedido.pedido_ms.mapper.CompradorMapper;
     import com.pedido.pedido_ms.mapper.ProdutoMapper;
     import com.pedido.pedido_ms.model.Pedido;
 
     public class PedidoResponse {
 
         private Long id;
+        private OrderStatus status;
         private Double price;
         private Instant timestamp;
         private Set<PedidoProdutoDTO> products;
@@ -20,6 +22,7 @@ package com.pedido.pedido_ms.dto.response;
         public PedidoResponse(Pedido order){
             this.id = order.getId();
             this.price = order.getPrice();
+            this.status = OrderStatus.valueOf(order.getStatus().getName());
             this.timestamp = order.getInstant();
             this.products = ProdutoMapper.modelSetToResponse(order.getProducts());
             this.buyer = CompradorMapper.modelToDTO(order.getBuyer());
@@ -27,6 +30,10 @@ package com.pedido.pedido_ms.dto.response;
 
         public Long getId() {
             return id;
+        }
+        
+        public OrderStatus getStatus() {
+            return status;
         }
 
         public Double getPrice() {

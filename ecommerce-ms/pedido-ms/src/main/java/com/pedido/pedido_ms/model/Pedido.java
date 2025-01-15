@@ -26,12 +26,19 @@ public class Pedido {
     private Double price;
     private Instant instant;
 
+    @ManyToOne
+    private Status status;
+
     public Pedido(){
         this.instant = Instant.now();
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public void setBuyer(Comprador buyer) {
@@ -64,6 +71,10 @@ public class Pedido {
 
     public Instant getInstant() {
         return instant;
+    }
+    
+    public Status getStatus() {
+        return status;
     }
 
 }
