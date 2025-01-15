@@ -49,6 +49,10 @@ public class PedidoService {
         return  orderProduct.stream().map(productResquest -> {
             Produto product = this.produtoService.getProduct(productResquest.getserialNumber());
 
+            if(!this.produtoService.isInStock(product.getSerialNumber())){
+                return null;
+            }
+
             PedidoProduto productOrder = new PedidoProduto();
             productOrder.setProduct(product);
             productOrder.setAmount(productResquest.getAmount());

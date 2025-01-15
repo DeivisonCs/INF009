@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.pedido.pedido_ms.client.UsuarioClient;
-import com.pedido.pedido_ms.client.UsuarioClientResponse;
+import com.pedido.pedido_ms.client.usuarioMs.UsuarioClient;
+import com.pedido.pedido_ms.client.usuarioMs.UsuarioClientResponse;
 import com.pedido.pedido_ms.model.Comprador;
 import com.pedido.pedido_ms.repository.CompradorRepository;
 

@@ -4,8 +4,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.pedido.pedido_ms.client.ProdutoClient;
-import com.pedido.pedido_ms.client.ProdutoClientResponse;
+import com.pedido.pedido_ms.client.produtoMs.ProdutoClient;
+import com.pedido.pedido_ms.client.produtoMs.ProdutoClientResponse;
+import com.pedido.pedido_ms.client.produtoMs.StockResponse;
 import com.pedido.pedido_ms.mapper.ProdutoMapper;
 import com.pedido.pedido_ms.model.Produto;
 import com.pedido.pedido_ms.repository.ProdutoRepository;
@@ -32,6 +33,12 @@ public class ProdutoService {
         this.produtoRepository.save(product);
         
         return product;
+    }
+
+    public Boolean isInStock(String serialNumber){
+        StockResponse stock = this.produtoClient.isInStock(serialNumber);
+
+        return stock.isInStock();
     }
 
     public Produto getProduct(String serialNumber){

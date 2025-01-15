@@ -3,7 +3,7 @@ package com.pedido.pedido_ms.mapper;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.pedido.pedido_ms.client.ProdutoClientResponse;
+import com.pedido.pedido_ms.client.produtoMs.ProdutoClientResponse;
 import com.pedido.pedido_ms.dto.PedidoProdutoDTO;
 import com.pedido.pedido_ms.dto.ProdutoDTO;
 import com.pedido.pedido_ms.model.PedidoProduto;

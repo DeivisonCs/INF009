@@ -1,6 +1,6 @@
 package com.pedido.pedido_ms.model;
 
-import com.pedido.pedido_ms.client.UsuarioClientResponse;
+import com.pedido.pedido_ms.client.usuarioMs.UsuarioClientResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;

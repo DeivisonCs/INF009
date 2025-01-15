@@ -1,6 +1,6 @@
 package com.pedido.pedido_ms.model;
 
-import com.pedido.pedido_ms.client.ProdutoClientResponse;
+import com.pedido.pedido_ms.client.produtoMs.ProdutoClientResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

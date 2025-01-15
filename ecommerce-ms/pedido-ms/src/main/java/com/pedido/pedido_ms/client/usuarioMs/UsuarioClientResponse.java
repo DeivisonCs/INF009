@@ -1,4 +1,4 @@
-package com.pedido.pedido_ms.client;
+package com.pedido.pedido_ms.client.usuarioMs;
 
 import com.pedido.pedido_ms.dto.EnderecoDTO;
 

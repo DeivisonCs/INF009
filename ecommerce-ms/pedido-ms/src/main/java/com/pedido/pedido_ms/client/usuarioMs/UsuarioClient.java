@@ -1,4 +1,4 @@
-package com.pedido.pedido_ms.client;
+package com.pedido.pedido_ms.client.usuarioMs;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
