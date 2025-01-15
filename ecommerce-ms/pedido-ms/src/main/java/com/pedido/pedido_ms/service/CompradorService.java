@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.pedido.pedido_ms.client.usuarioMs.UsuarioClient;
 import com.pedido.pedido_ms.client.usuarioMs.UsuarioClientResponse;
+import com.pedido.pedido_ms.exception.NotFoundException;
 import com.pedido.pedido_ms.model.Comprador;
 import com.pedido.pedido_ms.repository.CompradorRepository;
 
@@ -24,7 +25,7 @@ public class CompradorService {
         UsuarioClientResponse user = this.usuarioClient.getUserByCpf(cpf);
 
         if(user == null){
-            // exceção
+            throw new NotFoundException("Não foi possível recuperar dados do usuário");
         }
 
         Comprador buyer = new Comprador(user);

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.pedido.pedido_ms.client.produtoMs.ProdutoClient;
 import com.pedido.pedido_ms.client.produtoMs.ProdutoClientResponse;
 import com.pedido.pedido_ms.client.produtoMs.StockResponse;
+import com.pedido.pedido_ms.exception.NotFoundException;
 import com.pedido.pedido_ms.mapper.ProdutoMapper;
 import com.pedido.pedido_ms.model.Produto;
 import com.pedido.pedido_ms.repository.ProdutoRepository;
@@ -26,7 +27,7 @@ public class ProdutoService {
         ProdutoClientResponse clientResponse = this.produtoClient.getProductBySerialNumber(serialNumber);
 
         if(clientResponse == null){
-            // tratar exceção
+            throw new NotFoundException("Não foi possível recuperar dados do produto");
         }
 
         Produto product = ProdutoMapper.clientResponseToModel(clientResponse);

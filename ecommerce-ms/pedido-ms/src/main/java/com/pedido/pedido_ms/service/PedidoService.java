@@ -11,6 +11,7 @@ import com.pedido.pedido_ms.dto.enums.OrderStatus;
 import com.pedido.pedido_ms.dto.request.PedidoProdutoRequest;
 import com.pedido.pedido_ms.dto.request.PedidoRequest;
 import com.pedido.pedido_ms.dto.response.PedidoResponse;
+import com.pedido.pedido_ms.exception.NotFoundException;
 import com.pedido.pedido_ms.mapper.PedidoMapper;
 import com.pedido.pedido_ms.model.Comprador;
 import com.pedido.pedido_ms.model.Pedido;
@@ -79,8 +80,7 @@ public class PedidoService {
         Pedido order = this.getById(orderId);
 
         if (order == null) {
-            // tratar exceção
-            return;
+            throw new NotFoundException("Pedido não encontrado");
         }
 
         Status status = this.statusService.getStatus(newStatus);
