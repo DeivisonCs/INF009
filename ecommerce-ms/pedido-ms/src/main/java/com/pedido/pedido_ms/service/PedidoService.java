@@ -1,6 +1,7 @@
 package com.pedido.pedido_ms.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ import com.pedido.pedido_ms.model.Comprador;
 import com.pedido.pedido_ms.model.Pedido;
 import com.pedido.pedido_ms.model.PedidoProduto;
 import com.pedido.pedido_ms.model.Produto;
+import com.pedido.pedido_ms.model.Status;
 import com.pedido.pedido_ms.repository.PedidoRepository;
 
 @Service
@@ -71,5 +73,29 @@ public class PedidoService {
     public List<PedidoResponse> getAllOrders(){
         List<Pedido> orders = this.pedidoRepository.findAll();
         return PedidoMapper.modelListToResponseList(orders);
+    }
+
+    public void updateOrderStatus(Long orderId, OrderStatus newStatus){
+        Pedido order = this.getById(orderId);
+
+        if (order == null) {
+            // tratar exceção
+            return;
+        }
+
+        Status status = this.statusService.getStatus(newStatus);
+
+        order.setStatus(status);
+        this.pedidoRepository.save(order);
+    }
+
+    private Pedido getById(Long id){
+        Optional<Pedido> op = this.pedidoRepository.findById(id);
+
+        if(!op.isPresent()){
+            return null;
+        }
+
+        return op.get();
     }
 }
