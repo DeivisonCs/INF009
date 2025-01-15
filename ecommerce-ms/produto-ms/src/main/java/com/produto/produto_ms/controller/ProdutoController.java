@@ -18,6 +18,7 @@ import com.produto.produto_ms.dto.PedidoDTO;
 import com.produto.produto_ms.dto.ValidationGroup;
 import com.produto.produto_ms.dto.request.ProdutoRequest;
 import com.produto.produto_ms.dto.response.ProdutoResponse;
+import com.produto.produto_ms.dto.response.StockResponse;
 import com.produto.produto_ms.service.ProdutoService;
 
 import jakarta.validation.Valid;
@@ -75,5 +76,10 @@ public class ProdutoController {
     @PatchMapping("/update/product/{id}")
     public ResponseEntity<ProdutoResponse> updateStock(@PathVariable Long id, @RequestBody @Validated(ValidationGroup.Update.class) ProdutoRequest toUpdate){
         return ResponseEntity.ok().body(this.produtoService.updateProduct(id, toUpdate));
+    }
+
+    @GetMapping("/checkStock/{serialNumber}")
+    public ResponseEntity<StockResponse> isInStock(@PathVariable String serialNumber){
+        return ResponseEntity.ok().body(this.produtoService.isInStock(serialNumber));
     }
 }

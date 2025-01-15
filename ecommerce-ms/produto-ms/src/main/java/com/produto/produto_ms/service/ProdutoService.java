@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.produto.produto_ms.dto.PedidoDTO;
 import com.produto.produto_ms.dto.request.ProdutoRequest;
 import com.produto.produto_ms.dto.response.ProdutoResponse;
+import com.produto.produto_ms.dto.response.StockResponse;
 import com.produto.produto_ms.exceptions.NotFoundException;
 import com.produto.produto_ms.mapper.ProdutoMapper;
 import com.produto.produto_ms.model.Produto;
@@ -94,6 +95,16 @@ public class ProdutoService {
         
         this.produtoRepository.save(updatedProdut);
         return ProdutoMapper.modelToResponse(updatedProdut);
+    }
+
+    public StockResponse isInStock(String serialNumber){
+        Produto product = this.getBySerialNumber(serialNumber);
+
+        if(product == null) {
+            throw new NotFoundException("Produto não encontrado");
+        }
+
+        return new StockResponse(product.getStock() > 0, product.getStock());
     }
 
     private Produto getById(Long id){
